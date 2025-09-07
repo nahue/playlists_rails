@@ -1,0 +1,12 @@
+<h1 class="text-3xl lg:text-4xl font-bold text-base-content mb-2"><%= band.name %></h1>
+<p class="text-base-content/70 text-lg">Band Details</p>
+<div class="stats stats-horizontal shadow-sm mt-4">
+  <div class="stat py-2">
+    <div class="stat-title text-xs">Owner</div>
+    <div class="stat-value text-primary text-lg"><%= get_owner(band) %></div>
+  </div>
+  <div class="stat py-2">
+    <div class="stat-title text-xs">Total Songs</div>
+    <div class="stat-value text-primary text-lg"><%= band.songs.count %></div>
+  </div>
+</div>
