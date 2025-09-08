@@ -1,0 +1,10 @@
+<% content_for :title, "Editing playlist" %>
+
+<div class="md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">Editing playlist</h1>
+
+  <%= render "form", playlist: @playlist %>
+
+  <%= link_to "Show this playlist", @playlist, class: "btn btn-info" %>
+  <%= link_to "Back to playlists", playlists_path, class: "btn" %>
+</div>

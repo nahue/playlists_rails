@@ -7,7 +7,7 @@ module ApplicationHelper
       #     resize: "#{size}x#{size}!"
       #   )
       # else
-      hash = Digest::MD5.hexdigest(user.email_address.downcase)
+      hash = Digest::MD5.hexdigest(user.email.downcase)
       "https://secure.gravatar.com/avatar/#{hash}.png?s=#{size}"
     # end
   end

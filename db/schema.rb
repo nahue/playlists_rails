@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_08_023442) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_08_215937) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -49,44 +49,38 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_08_023442) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "bands", force: :cascade do |t|
-    t.string "name"
+  create_table "playlists", force: :cascade do |t|
+    t.text "name"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.index ["user_id"], name: "index_bands_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "ip_address"
     t.string "user_agent"
+    t.string "ip_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
-  create_table "songs", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "band_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "band_name"
-    t.index ["band_id"], name: "index_songs_on_band_id"
+  create_table "sign_in_tokens", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_sign_in_tokens_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email_address", null: false
+    t.string "email", null: false
     t.string "password_digest", null: false
+    t.boolean "verified", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email_address"], name: "index_users_on_email_address", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "bands", "users"
   add_foreign_key "sessions", "users"
-  add_foreign_key "songs", "bands"
+  add_foreign_key "sign_in_tokens", "users"
 end

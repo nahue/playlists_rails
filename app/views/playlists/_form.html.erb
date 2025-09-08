@@ -1,0 +1,27 @@
+<%= form_with(model: playlist, class: "contents space-y-5") do |form| %>
+  <% if playlist.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(playlist.errors.count, "error") %> prohibited this playlist from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% playlist.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend"><%= form.object.class.human_attribute_name(:name) %></legend>
+    <%= form.textarea :name, rows: 4, class: ["textarea", {"border-gray-400 focus:outline-blue-600": playlist.errors[:name].none?, "textarea-error": playlist.errors[:name].any?}] %>
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend"><%= form.object.class.human_attribute_name(:description) %></legend>
+    <%= form.textarea :description, rows: 4, class: ["textarea", {"border-gray-400 focus:outline-blue-600": playlist.errors[:description].none?, "textarea-error": playlist.errors[:description].any?}] %>
+  </fieldset>
+
+  <div class="inline">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

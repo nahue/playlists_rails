@@ -3,8 +3,7 @@
     <!-- Sidebar component, swap this element with another sidebar if you like -->
   <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 dark:border-white/10 dark:bg-black/10">
     <div class="flex h-16 shrink-0 items-center">
-      <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" class="h-8 w-auto dark:hidden" />
-      <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="h-8 w-auto not-dark:hidden" />
+      <%= link_to "Nahuel's Sandbox", root_path, class: "text-xl font-bold text-gray-200" %>
     </div>
     <nav class="flex flex-1 flex-col">
       <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -49,11 +48,33 @@
           </ul>
         </li>
         <li class="-mx-6 mt-auto">
-          <a href="#" class="flex items-center gap-x-4 px-6 py-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">
-            <img src="<%= avatar_url_for(Current.user) %>" alt="" class="size-8 rounded-full bg-gray-50 outline -outline-offset-1 outline-black/5 dark:bg-gray-800 dark:outline-white/10" />
-            <span class="sr-only">Your profile</span>
-            <span aria-hidden="true"><%= Current.user.email_address %></span>
-          </a>
+          <!-- Profile dropdown -->
+          <div class="flex items-center gap-x-4 px-6 py-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-white/5">
+            <el-dropdown class="relative">
+              <button class="relative flex items-center">
+                <span class="absolute -inset-1.5"></span>
+                <span class="sr-only">Open user menu</span>
+                <img src="<%= avatar_url_for(Current.user) %>" alt="" class="size-8 rounded-full bg-gray-50 outline -outline-offset-1 outline-black/5 dark:bg-gray-800 dark:outline-white/10" />
+                <span class="hidden lg:flex lg:items-center">
+                  <span aria-hidden="true" class="ml-4 text-sm/6 font-semibold text-gray-900 dark:text-white"><%= Current.user.email %></span>
+                  <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="ml-2 size-5 text-gray-400">
+                    <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
+                  </svg>
+                </span>
+              </button>
+              <el-menu anchor="top start" popover class="w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg outline-1 outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in dark:divide-white/10 dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+                <div class="py-1">
+                <%= link_to "Change password", edit_password_path, class: "block px-3 py-1 text-sm/6 text-gray-900 focus:bg-gray-50 focus:outline-hidden dark:text-white dark:focus:bg-gray-700" %>
+                <%= link_to "Change email address", edit_identity_email_path, class: "block px-3 py-1 text-sm/6 text-gray-900 focus:bg-gray-50 focus:outline-hidden dark:text-white dark:focus:bg-gray-700" %>
+                <%= link_to "Send invitation", new_invitation_path, class: "block px-3 py-1 text-sm/6 text-gray-900 focus:bg-gray-50 focus:outline-hidden dark:text-white dark:focus:bg-gray-700" %>
+                <%= link_to "Devices & Sessions", sessions_path, class: "block px-3 py-1 text-sm/6 text-gray-900 focus:bg-gray-50 focus:outline-hidden dark:text-white dark:focus:bg-gray-700" %>
+                </div>
+                <div class="py-1">
+                  <%= button_to "Sign out", Current.session, method: :delete, form_class: "block", class: "w-full text-left block px-3 py-1 text-sm/6 text-gray-900 focus:bg-gray-50 focus:outline-hidden dark:text-white dark:focus:bg-gray-700" %>
+                </div>
+              </el-menu>
+            </el-dropdown>
+          </div>
         </li>
       </ul>
     </nav>
