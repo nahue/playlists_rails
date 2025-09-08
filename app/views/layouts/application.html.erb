@@ -24,7 +24,9 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
+    <% if authenticated? %>
+      <%= render "shared/navbar" %>
+    <% end %>
     
     <!-- <nav class="navbar bg-base-100 shadow-sm">
       <div class="container mx-auto px-5 py-4 flex justify-between items-center">
