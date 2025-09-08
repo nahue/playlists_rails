@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_07_044109) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_08_023442) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -72,6 +72,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_07_044109) do
     t.integer "band_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "band_name"
     t.index ["band_id"], name: "index_songs_on_band_id"
   end
 

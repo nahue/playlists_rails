@@ -7,13 +7,11 @@
         </div>
       </div>
       <div class="font-semibold text-base-content text-sm lg:text-base"><%= song.name %></div>
-      <div class="text-base-content/70 text-sm lg:text-base"><%= song.band_name %></div>
+      
     </div>
   </td>
-  <td class="hidden lg:table-cell">
-    <div class="text-base-content/70 text-sm lg:text-base max-w-xs lg:max-w-md truncate">
-      <%= song.description.present? ? song.description : "No description" %>
-    </div>
+  <td>
+    <div class="text-base-content/70 text-sm lg:text-base"><%= song.band_name %></div>
   </td>
   <td>
     <div class="flex gap-1 lg:gap-2 justify-end">

@@ -17,6 +17,11 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :band_name, class: "block font-medium mb-1" %>
+    <%= form.text_field :band_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
     <%= form.label :description, class: "block font-medium mb-1" %>
     <%= form.rich_textarea :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>

@@ -74,6 +74,6 @@ class SongsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def song_params
-      params.expect(song: [ :name, :description ])
+      params.expect(song: [ :name, :description, :band_name ])
     end
 end
